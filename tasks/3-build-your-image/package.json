@@ -1,0 +1,14 @@
+{
+  "name": "yagna-setup",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Ensure the yagna setup is complete",
+  "scripts": {
+    "verify": "node main.mjs"
+  },
+  "author": "Golem Factory GmbH",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@golem-sdk/golem-js": "^0.11.2"
+  }
+}
