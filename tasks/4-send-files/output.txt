@@ -1,0 +1,20 @@
+QE) Example
+
+JS Task API Examples: executing tasks ©
+
+Introduction ©
+
+With Golem JS Task API you can execute just a single task on a single provider or a series of multiple
+tasks in parallel on many providers. In the case of the latter, you can additionally define how providers
+should be initialized and how many tasks you want to run simultaneously.
+
+In this article, the following examples are presented:
+
+e Running tasks in parallel (map())
+
+e Running tasks in parallel (forEach())
+
+e Defining the number of providers working in parallel
+e Initializing providers
+
+e Running a single task

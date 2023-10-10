@@ -13,8 +13,8 @@ Please fill out the form below:
 
 | Task Step    | Completion Time (in minutes) |
 |-------     |------------------------------|
-| Create custom image    |                              |
-| Create the requestor script                |                              |
+| Create custom image    |               25               |
+| Create the requestor script                |             65                 |
 
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
