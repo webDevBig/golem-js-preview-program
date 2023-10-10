@@ -1,14 +1,14 @@
 {
-  "name": "fortune",
+  "name": "yagna-setup",
   "version": "1.0.0",
   "type": "module",
-  "description": "A script that uses Golem to run fortune",
+  "description": "Ensure the yagna setup is complete",
   "scripts": {
-    "tts": "node main.mjs"
+    "verify": "node main.mjs"
   },
   "author": "Golem Factory GmbH",
-  "license": "GPL-3.0 license",
+  "license": "GPL-3.0",
   "dependencies": {
-    "@golem-sdk/golem-js": "^0.8.2"
+    "@golem-sdk/golem-js": "^0.11.2"
   }
 }

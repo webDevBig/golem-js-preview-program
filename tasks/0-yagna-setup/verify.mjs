@@ -4,7 +4,7 @@ import { writeFileSync } from "fs";
 (async function main() {
   const executor = await TaskExecutor.create({
     package: "9a3b5d67b0b27746283cb5f287c13eab1beaa12d92a9f536b747c7ae",
-    yagnaOptions: { apiKey: "try_golem" },
+    yagnaOptions: { apiKey: "7eb7bce657144200b75f562c82088b74" },
   });
 
   await executor.run(async (ctx) => {
