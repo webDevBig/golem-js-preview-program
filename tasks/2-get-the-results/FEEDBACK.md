@@ -67,6 +67,8 @@ What was a nice surprise?
 I had errors almost every step of the way while working on this task. At first, the text was not converted to .wav, then there were problems with the .mp3 file. But when I solved the first problem, everything fell into place.
 For the fist time difficult write nice and clean code. It is my first experiences with Golem Network, so I need more practice.
 
+These were my mistakes, as I did not indicate the path correctly. Accordingly, the first mistake led to others. Since this is my first experience with Golem, it was difficult for me to immediately find my mistakes and correct them. 
+
 In what projects could you utilize Golem Network?
 Maybe in the project with audio player.
 ]

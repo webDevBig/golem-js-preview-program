@@ -10,15 +10,13 @@ import * as fs from 'fs';
   const imagePath = 'image.png';
   await executor.run(async (ctx) => {
 
-    const result = await executor.run(async (ctx) => {
-        await ctx.uploadFile(imagePath, '/golem/work/golem-node.png');
-        const ocrResult = await ctx.run(`tesseract /golem/work/golem-node.png /golem/work/output`);
-      
-        await ctx.downloadFile('/golem/work/output.txt', 'output.txt');
-     
-        const ocrText = fs.readFileSync('output.txt', 'utf8');
-        console.log('OCR Result:', ocrText);
-      });
+    await ctx.uploadFile(imagePath, '/golem/work/golem-node.png');
+    const ocrResult = await ctx.run(`tesseract /golem/work/golem-node.png /golem/work/output`);
+        
+    await ctx.downloadFile('/golem/work/output.txt', 'output.txt');
+        
+    const ocrText = fs.readFileSync('output.txt', 'utf8');
+    console.log('OCR Result:', ocrText);
     
   });
   await executor.end();

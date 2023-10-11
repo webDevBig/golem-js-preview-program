@@ -7,19 +7,9 @@ import { exec } from "child_process";
     yagnaOptions: { apiKey: "7eb7bce657144200b75f562c82088b74" },
   });
   await executor.run(async (ctx) => {
-    // TODO execute fortune command
 
-    await exec("/usr/games/fortune -i", (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Stderr: ${stderr}`);
-        return;
-      }
-      console.log(`Fortune Result: ${stdout}`);
-    });
+    const fortuneResult = await ctx.run("/usr/games/fortune -i");
+    console.log("Fortune Result:", fortuneResult.stdout);
 
   });
   await executor.end();

@@ -20,6 +20,8 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 I added to the Dockerfile install commander. Without it was some errors
+
+In the generator.mjs we have this line "import { program } from "commander";". So when I write Dockerfile for the first time I didn't add this. And I received an error. So I incleded this line  "RUN npm install commander" to the Dockerfile and it worked.
 ]
 
 ### Feedback:
