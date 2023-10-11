@@ -18,7 +18,7 @@ Please fill out the form below:
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
 [
-
+  I added a check to see if this picture really has Fortune
 
 ]
 
@@ -36,9 +36,11 @@ I used this directory but I alway recived this error
 "Error: Command failed: /usr/games/fortune -i
 /bin/sh: /usr/games/fortune: No such file or directory"
 
-How would you change the structure/navigation of the docs? Recommend changes.
+How would you change the structure/navigation of the docs? Recommend changes. 
+Add a message about possible errors or bugs
 
 Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary?
+Need more tutorial with command "fortune"
 
 Have you noticed any errors? Please describe them or provide links to issues if you have already reported them.
 
@@ -52,12 +54,14 @@ Is the hash right?
 
 [
     
-Is JS SDK API intuitive and helps solve the tasks? If not, what would you change?
+Is JS SDK API intuitive and helps solve the tasks? If not, what would you change? 
+Yes
 
 Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported.
+No
 
 What additional features would you add?
-
+Nothing
 ]
 
 #### General feedback:
@@ -65,23 +69,21 @@ What additional features would you add?
 [
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
-
+What was a nice surprise? 
 For the first time it is difficult to understand how to write code correctly. But I think if I have more practice it will be much easier.
 
-What was a nice surprise?
-
 In what projects could you utilize Golem Network?
-
+Maybe in the future, if my projects will need it
 ]
 
 #### Preview Program
 
 [
 
-Were the tasks and instructions adequate and clear? 
+Were the tasks and instructions adequate and clear?  Yes
 
 Is there anything you would improve about the JS Preview program?
-
+At the moment, everything suits me
 ]
 
 

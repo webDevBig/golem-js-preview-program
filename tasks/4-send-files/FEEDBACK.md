@@ -19,7 +19,7 @@ Please fill out the form below:
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
 [
- Nowhere is it indicated that there must be a picture locally and that it must be sent to the provider 
+ It is no indicated that there must be a picture locally and that it must be sent to the provider 
 
 ]
 
@@ -29,13 +29,13 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find?
+Could you find the necessary information? If not what topics were difficult to find? Yes, Yes, I found all I need
 
-How would you change the structure/navigation of the docs? Recommend changes.
+How would you change the structure/navigation of the docs? Recommend changes. No
 
-Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary?
+Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary? Yes, it was useful
 
-Have you noticed any errors? Please describe them or provide links to issues if you have already reported them.
+Have you noticed any errors? Please describe them or provide links to issues if you have already reported them. No
 
 ]
 
@@ -43,11 +43,11 @@ Have you noticed any errors? Please describe them or provide links to issues if 
 
 [
     
-Is JS SDK API intuitive and helps solve the tasks? If not, what would you change?
+Is JS SDK API intuitive and helps solve the tasks? If not, what would you change? Yes.
 
-Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported.
+Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported. No
 
-What additional features would you add?
+What additional features would you add? Nothing
 
 ]
 
@@ -57,9 +57,10 @@ What additional features would you add?
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
 What was a nice surprise?
+It's very cool that you can convert text from the image to the .txt file. It saves time
 
 In what projects could you utilize Golem Network?
-
+When I'll need to rewrite the text from the image I'll use Golem Network
 ]
 
 #### Preview Program
@@ -70,7 +71,7 @@ Were the tasks and instructions adequate and clear?
 In general, everything is clear and the previous task prepares you for this.
 
 Is there anything you would improve about the JS Preview program?
-
+I think everything works fine
 ]
 
 
