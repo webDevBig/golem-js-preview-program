@@ -13,8 +13,8 @@ Please fill out the form below:
 
 | Task Step                  | Completion Time (in minutes) |
 | -------------------------- | ---------------------------- |
-| Modify a `main.mjs` script |                              |
-| Download the output file    |                              |
+| Modify a `main.mjs` script |              65                |
+| Download the output file    |               5               |
 
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
@@ -49,6 +49,8 @@ Have you encountered any errors in the golem-js lib? Provide the link(s) to the 
 
 What additional features would you add?
 
+
+
 ]
 
 #### General feedback:
@@ -56,6 +58,10 @@ What additional features would you add?
 [
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
+
+I had errors almost every step of the way while working on this task. At first, the text was not converted to .wav, then there were problems with the .mp3 file. But when I solved the first problem, everything fell into place.
+For the fist time difficult write nice and clean code. It is my first experiences with Golem Network, so I need more practice.
+
 What was a nice surprise?
 
 In what projects could you utilize Golem Network?

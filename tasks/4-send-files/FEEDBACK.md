@@ -19,7 +19,7 @@ Please fill out the form below:
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
 [
-
+ Nowhere is it indicated that there must be a picture locally and that it must be sent to the provider 
 
 ]
 
@@ -67,6 +67,7 @@ In what projects could you utilize Golem Network?
 [
 
 Were the tasks and instructions adequate and clear? 
+In general, everything is clear and the previous task prepares you for this.
 
 Is there anything you would improve about the JS Preview program?
 
