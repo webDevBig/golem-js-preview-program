@@ -29,7 +29,7 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find? Yes, Yes, I found all I need
+Could you find the necessary information? If not what topics were difficult to find? Yes, I found all I need
 
 How would you change the structure/navigation of the docs? Recommend changes. No
 

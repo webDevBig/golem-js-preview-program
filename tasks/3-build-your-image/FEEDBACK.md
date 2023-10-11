@@ -19,8 +19,7 @@ Please fill out the form below:
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
 [
-Specify that maybe you'll need to include additional libraries or tools to the Dockerfile.
-Cause I was have some isues with adding generator.mjs to the Dockerfile and reading this script at the main.mjs
+I added to the Dockerfile install commander. Without it was some errors
 ]
 
 ### Feedback:
@@ -29,9 +28,12 @@ Cause I was have some isues with adding generator.mjs to the Dockerfile and read
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find? Yes
+Could you find the necessary information? If not what topics were difficult to find? Yes, I found all I need
 
-How would you change the structure/navigation of the docs? Recommend changes. No changes
+How would you change the structure/navigation of the docs? Recommend changes.
+
+Specify that maybe you'll need to include additional libraries or tools to the Dockerfile.
+Cause I was have some isues with adding generator.mjs to the Dockerfile and reading this script at the main.mjs
 
 Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary?
 It was easy to create Docker image and convert it to the Golem image format with helpful link.
@@ -59,7 +61,7 @@ Nothing
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
 What was a nice surprise?
-I was interesting to create Docker image.
+It was interesting to create Docker image.
 
 In what projects could you utilize Golem Network?
 Maybe in the future, if my projects will need it
