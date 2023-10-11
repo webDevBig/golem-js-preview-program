@@ -69,6 +69,28 @@ For the fist time difficult write nice and clean code. It is my first experience
 
 These were my mistakes, as I did not indicate the path correctly. Accordingly, the first mistake led to others. Since this is my first experience with Golem, it was difficult for me to immediately find my mistakes and correct them. 
 
+
+Error 1. I did not install `espeak` and accordingly the .wav file was not created ;
+Error 2. After text was convert to the .wav file, I tried to create the file locally. 
+`writeFileSync("output.wav", espeakResult)` But I got an error: 
+ERROR: ReferenceError: writeFileSync is not defined.
+
+Error 3. I entered the path incorrectly.
+const convertResult = await ctx.run(`ffmpeg -i /output.wav /output.mp3`)
+And received this:
+ERROR: Task 1 has been rejected! The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received null
+     error: {
+       "type": "Error",
+       "message": "Task 1 has been rejected! The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received null",
+       "stack":
+           Error: Task 1 has been rejected! The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received null
+               at TaskService.startTask (/Users/valeriasokol/Desktop/Golem Factory/golem-js-preview-program-master/tasks/2-get-the-results/node_modules/@golem-sdk/golem-js/dist/golem- js.cjs.js:2757:23)
+               at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+     }
+
+Then I just started doing everything from the beginning. I installed `espeak` and `ffmpeg` and did everything sequentially as in the instructions and everything worked out.
+My global mistake was that at beginning I chose a complicated way instead of simple.
+
 In what projects could you utilize Golem Network?
 Maybe in the project with audio player.
 ]
