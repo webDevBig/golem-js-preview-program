@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Conversion Page</title>
+
+  <style>
+    .functionality {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .clm {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    select {
+      width: 200px;
+    }
+
+    button {
+      width: 80px;
+      height: 20px;
+      line-height: 1;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .image {
+      width: 150px;
+      height: 150px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .result {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .conversions-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="functionality">
+    <div class="clm">
+      <p>Download your image</p>
+      <input type="file" name="image" accept="image/*" required>
+    </div>
+    <div class="clm">
+      <p>Choose type of conversion:</p>
+      <div class="conversions-box">
+        <div class="row"><input type="checkbox" name="conversions" id="conversion1" value="rotate">
+          <label for="conversion1">Rotate</label>
+        </div>
+        <div class="row"> <input type="checkbox" name="conversions" id="conversion2" value=".png">
+          <label for="conversion2">.png</label>
+        </div>
+        <div class="row"><input type="checkbox" name="conversions" id="conversion3" value="crop">
+          <label for="conversion3">Crop</label>
+        </div>
+        <div class="row"><input type="checkbox" name="conversions" id="conversion4" value="gray">
+          <label for="conversion4">Gray</label>
+        </div>
+        <div class="row"><input type="checkbox" name="conversions" id="conversion5" value="negate">
+          <label for="conversion5">Negate</label>
+        </div>
+      </div>
+    </div>
+    <div class="clm">
+      <button id="echo">OK</button>
+    </div>
+  </div>
+  <div class="result">
+    <div class="original_image image"></div>
+  </div>
+
+
+
+
+  <script type="module">
+    import {
+      TaskExecutor
+    } from 'https://unpkg.com/@golem-sdk/golem-js';
+
+    async function run() {
+      const executor = await TaskExecutor.create({
+        yagnaOptions: {
+          apiKey: '7eb7bce657144200b75f562c82088b74'
+        },
+        package: '7faa6a327c0a568fb3ad18ed1adf91a7493a445fc0dc640ab3d2eab0',
+      });
+      const selectedFile = document.querySelector('input[type="file"]').files[0];
+
+      await executor.run(async (ctx) => {
+        const inputFileName = selectedFile.name;
+        if (document.getElementById('conversion1').checked) {
+          await ctx.run(`convert ${selectedFile.name} -rotate 60 rotate_image.jpeg`)
+        }
+        if (document.getElementById('conversion2').checked) {
+          await ctx.run(`convert ${selectedFile.name} png_image.png`);
+        }
+        if (document.getElementById('conversion3').checked) {
+          await ctx.run(`convert ${selectedFile.name} -crop 100x120+50+50 crop_image.jpeg`);
+        }
+        if (document.getElementById('conversion4').checked) {
+          await ctx.run(`convert ${selectedFile.name} -colorspace Gray gray_image.jpeg`);
+        }
+        if (document.getElementById('conversion5').checked) {
+          await ctx.run(`convert ${selectedFile.name} -negate negate_image.jpeg`);
+        }
+      });
+
+      console.log('Results: All done');
+
+      await executor.end();
+    }
+
+    document.getElementById('echo').onclick = run;
+  </script>
+</body>
+
+</html>

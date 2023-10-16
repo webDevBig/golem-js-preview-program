@@ -13,13 +13,13 @@ Please fill out the form below:
 
 | Task Step    | Completion Time (in minutes) |
 |-------     |------------------------------|
-| Create the web page     |                              |
-| Integrate the requestor script  with the page              |                              |
+| Create the web page     |              30                |
+| Integrate the requestor script  with the page              |            20                  |
 
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
 [
-
+-
 
 ]
 
@@ -29,26 +29,32 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find?
+Could you find the necessary information? If not what topics were difficult to find? Yes
 
-How would you change the structure/navigation of the docs? Recommend changes.
+How would you change the structure/navigation of the docs? Recommend changes.Do not change.
 
-Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary?
+Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary? Yes, it was userful.
 
 Have you noticed any errors? Please describe them or provide links to issues if you have already reported them.
+I have server error:
 
+"POST http://127.0.0.1:7465/market-api/v1/demands/e0cb2c09ba56469c9a164eade3e7b87f-99a0768294517bbf40d4d1b460218a476688246ad10a179d8458905384232693/proposals/R-84724a45cc771c66850dfe16b05d64b9cc6da81637747d8c26e0c27864f57dab 500 (Internal Server Error)"
+
+I used command `yagna service run --api-allow-origin='http://localhost:8080'` to start Yagna, I have API-key that I used in the previous tasks, I installed the http-server `npm install --global http-server`, runed this `npx http-server`. 
+And when I click on the button  I have that error in console and sometimes this:
+"POST http://127.0.0.1:7465/market-api/v1/agreements/037b8439521db9c68ccd300c4a444f8ea688988e9853d5f03f3209e5934b4358/wait?timeout=60 410 (Gone)"
 ]
 
 #### JS golem-js
 
 [
     
-Is JS SDK API intuitive and helps solve the tasks? If not, what would you change?
+Is JS SDK API intuitive and helps solve the tasks? If not, what would you change? Yes
 
-Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported.
+Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported. No
 
 What additional features would you add?
-
+Nothing
 ]
 
 #### General feedback:
@@ -56,10 +62,10 @@ What additional features would you add?
 [
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
-What was a nice surprise?
+What was a nice surprise? 
 
 In what projects could you utilize Golem Network?
-
+in my future projects.
 ]
 
 #### Preview Program
