@@ -13,7 +13,7 @@ Please fill out the form below:
 
 | Task Step    | Completion Time (in minutes) |
 |-------       |------------------------------|
-| Create the requestor script                |                              |
+| Create the requestor script                |         40                     |
 
 List any additional steps that were necessary to resolve the task (other than the steps in the README.md):
 
@@ -28,25 +28,28 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find?
+Could you find the necessary information? If not what topics were difficult to find? I found everything about parallel, but I have problems with realesrgan-ncnn-vulkan. 
 
-How would you change the structure/navigation of the docs? Recommend changes.
+How would you change the structure/navigation of the docs? Recommend changes. No changes
 
-Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary?
+Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary? I needed more examples with the realesr tool 
 
 Have you noticed any errors? Please describe them or provide links to issues if you have already reported them.
-
+I always have this warning:
+"WARN: Task error on provider sharkoon_379_5.h. Error: ExeScript command exited with code 127. Stdout: undefined. Stderr: sh: 1: /realsr-ncnn-vulkan/realsr-ncnn-vulkan: not found"
+I think I'm not using it correctly realsr-ncnn-vulkan. 
 ]
 
 #### JS golem-js
 
 [
     
-Is JS SDK API intuitive and helps solve the tasks? If not, what would you change?
+Is JS SDK API intuitive and helps solve the tasks? If not, what would you change? Yes
 
-Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported.
+Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported. No
 
-What additional features would you add?
+What additional features would you add? Nothing
+What additional features would you add? 
 
 ]
 
@@ -65,10 +68,10 @@ In what projects could you utilize Golem Network?
 
 [
 
-Were the tasks and instructions adequate and clear? 
+Were the tasks and instructions adequate and clear?  Everything is clear except realsr-ncnn-vulkan, but I maybe it's only for me
 
 Is there anything you would improve about the JS Preview program?
-
+Everything works fine
 ]
 
 

@@ -4,11 +4,12 @@
   "type": "module",
   "description": "Ensure the yagna setup is complete",
   "scripts": {
-    "verify": "node requestor.mjs"
+    "start": "node requestor.mjs -i ./images"
   },
   "author": "Golem Factory GmbH",
   "license": "GPL-3.0",
   "dependencies": {
-    "@golem-sdk/golem-js": "^0.11.2"
+    "@golem-sdk/golem-js": "^0.11.2",
+    "commander": "^11.1.0"
   }
 }

@@ -1,5 +1,4 @@
 import { TaskExecutor } from "@golem-sdk/golem-js";
-import { exec } from "child_process";
 
 (async function main() {
   const executor = await TaskExecutor.create({
