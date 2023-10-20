@@ -44,6 +44,8 @@ I used command `yagna service run --api-allow-origin='http://localhost:8080'` to
 And when I click on the button  I have that error in console and sometimes this:
 "POST http://127.0.0.1:7465/market-api/v1/agreements/037b8439521db9c68ccd300c4a444f8ea688988e9853d5f03f3209e5934b4358/wait?timeout=60 410 (Gone)"
 ]
+or this
+" WebSocket connection to 'ws://127.0.0.1:7465/gsb-api/v1/services/L3B1YmxpYy9nZnRwL2ZmYWNiZDA5LWYzNjEtNDJhZC1iYzFmLTU3YTdlMTgzNTA3MA?authToken=7eb7bce657144200b75f562c82088b74' failed: "
 
 #### JS golem-js
 

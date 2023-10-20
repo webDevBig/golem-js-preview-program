@@ -58,6 +58,22 @@
       align-items: center;
       justify-content: flex-start;
     }
+
+    .image {
+      width: 100px;
+      height: 100px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .original_image {
+      width: 300px;
+      height: 300px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   </style>
 </head>
 
@@ -66,7 +82,7 @@
   <div class="functionality">
     <div class="clm">
       <p>Download your image</p>
-      <input type="file" name="image" accept="image/*" required>
+      <input type="file" name="image" accept="image/*" id="image" required>
     </div>
     <div class="clm">
       <p>Choose type of conversion:</p>
@@ -94,6 +110,11 @@
   </div>
   <div class="result">
     <div class="original_image image"></div>
+    <div class="convert_image1 image"></div>
+    <div class="convert_image2 image"></div>
+    <div class="convert_image3 image"></div>
+    <div class="convert_image4 image"></div>
+    <div class="convert_image5 image"></div>
   </div>
 
 
@@ -111,29 +132,55 @@
         },
         package: '7faa6a327c0a568fb3ad18ed1adf91a7493a445fc0dc640ab3d2eab0',
       });
-      const selectedFile = document.querySelector('input[type="file"]').files[0];
+
+      const selectedFile = document.getElementById('image').files[0];
+      const inputImage = `/golem/input/${selectedFile.name}`;
+
+      const originalImageElement = document.querySelector('.original_image');
+      originalImageElement.style.backgroundImage = `url(${URL.createObjectURL(selectedFile)}`;
 
       await executor.run(async (ctx) => {
-        const inputFileName = selectedFile.name;
-        if (document.getElementById('conversion1').checked) {
-          await ctx.run(`convert ${selectedFile.name} -rotate 60 rotate_image.jpeg`)
-        }
-        if (document.getElementById('conversion2').checked) {
-          await ctx.run(`convert ${selectedFile.name} png_image.png`);
-        }
-        if (document.getElementById('conversion3').checked) {
-          await ctx.run(`convert ${selectedFile.name} -crop 100x120+50+50 crop_image.jpeg`);
-        }
-        if (document.getElementById('conversion4').checked) {
-          await ctx.run(`convert ${selectedFile.name} -colorspace Gray gray_image.jpeg`);
-        }
-        if (document.getElementById('conversion5').checked) {
-          await ctx.run(`convert ${selectedFile.name} -negate negate_image.jpeg`);
-        }
-      });
+        await ctx.uploadData(inputImage, selectedFile);
+        });
+      
+
+      if (document.getElementById('conversion1').checked) {
+        await executor.run(async (ctx) => {
+          await ctx.run(`convert ${inputImage} -rotate 60 /golem/output/rotate_image.jpeg`);
+          await ctx.dowloadData(`/golem/output/rotate_image.jpeg , rotate_image.jpeg`);
+        });
+        document.querySelector('.convert_image1').style.backgroundImage = `url(/golem/output/rotate_image.jpeg)`;
+      }
+      if (document.getElementById('conversion2').checked) {
+        await executor.run(async (ctx) => {
+          await ctx.run(`convert ${inputImage} /golem/output/png_image.png`);
+          await ctx.dowloadData(`/golem/output/png_image.png , png_image.png`);
+        });
+        document.querySelector('.convert_image2').style.backgroundImage = `url(/golem/output/png_image.png)`;
+      }
+      if (document.getElementById('conversion3').checked) {
+        await executor.run(async (ctx) => {
+          await ctx.run(`convert ${inputImage} -crop 100x120+50+50 /golem/output/crop_image.jpeg`);
+          await ctx.dowloadData(`/golem/output/crop_image.jpeg , crop_image.jpeg`);
+        });
+        document.querySelector('.convert_image3').style.backgroundImage = `url(/golem/output/crop_image.jpeg)`;
+      }
+      if (document.getElementById('conversion4').checked) {
+        await executor.run(async (ctx) => {
+          await ctx.run(`convert ${inputImage} -colorspace Gray /golem/output/gray_image.jpeg`);
+          await ctx.dowloadData(`/golem/output/gray_image.jpeg , gray_image.jpeg`);
+        });
+        document.querySelector('.convert_image4').style.backgroundImage = `url(/golem/output/gray_image.jpeg)`;
+      }
+      if (document.getElementById('conversion5').checked) {
+        await executor.run(async (ctx) => {
+          await ctx.run(`convert ${inputImage} -negate /golem/output/negate_image.jpeg`);
+          await ctx.dowloadData(`/golem/output/negate_image.jpeg , negate_image.jpeg`);
+        });
+        document.querySelector('.convert_image5').style.backgroundImage = `url(/golem/output/negate_image.jpeg)`;
+      }
 
       console.log('Results: All done');
-
       await executor.end();
     }
 

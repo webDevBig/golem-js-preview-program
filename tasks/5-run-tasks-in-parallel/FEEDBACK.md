@@ -49,7 +49,6 @@ Is JS SDK API intuitive and helps solve the tasks? If not, what would you change
 Have you encountered any errors in the golem-js lib? Provide the link(s) to the issue(s) in `golem-js` [repository](https://github.com/golemfactory/golem-js/issues) which you had reported. No
 
 What additional features would you add? Nothing
-What additional features would you add? 
 
 ]
 
