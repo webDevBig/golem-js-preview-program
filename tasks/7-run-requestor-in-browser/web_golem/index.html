@@ -139,46 +139,64 @@
       const originalImageElement = document.querySelector('.original_image');
       originalImageElement.style.backgroundImage = `url(${URL.createObjectURL(selectedFile)}`;
 
-      await executor.run(async (ctx) => {
-        await ctx.uploadData(inputImage, selectedFile);
-        });
-      
+      const tasks = [];
 
       if (document.getElementById('conversion1').checked) {
-        await executor.run(async (ctx) => {
-          await ctx.run(`convert ${inputImage} -rotate 60 /golem/output/rotate_image.jpeg`);
-          await ctx.dowloadData(`/golem/output/rotate_image.jpeg , rotate_image.jpeg`);
-        });
-        document.querySelector('.convert_image1').style.backgroundImage = `url(/golem/output/rotate_image.jpeg)`;
+        tasks.push(
+          executor.run(async (ctx) => {
+            await ctx.run(`convert ${inputImage} -rotate 60 /golem/output/rotate_image.jpeg`);
+            await ctx.dowloadData(`/golem/output/rotate_image.jpeg`, 'rotate_image.jpeg');
+            document.querySelector('.convert_image1').style.backgroundImage =
+              `url(/golem/output/rotate_image.jpeg)`;
+          })
+        );
       }
+
       if (document.getElementById('conversion2').checked) {
-        await executor.run(async (ctx) => {
-          await ctx.run(`convert ${inputImage} /golem/output/png_image.png`);
-          await ctx.dowloadData(`/golem/output/png_image.png , png_image.png`);
-        });
-        document.querySelector('.convert_image2').style.backgroundImage = `url(/golem/output/png_image.png)`;
+        tasks.push(
+          executor.run(async (ctx) => {
+            await ctx.run(`convert ${inputImage} /golem/output/png_image.png`);
+            await ctx.dowloadData(`/golem/output/png_image.png`, 'png_image.png');
+            document.querySelector('.convert_image2').style.backgroundImage =
+            `url(/golem/output/png_image.png)`;
+          })
+        );
       }
+
       if (document.getElementById('conversion3').checked) {
-        await executor.run(async (ctx) => {
-          await ctx.run(`convert ${inputImage} -crop 100x120+50+50 /golem/output/crop_image.jpeg`);
-          await ctx.dowloadData(`/golem/output/crop_image.jpeg , crop_image.jpeg`);
-        });
-        document.querySelector('.convert_image3').style.backgroundImage = `url(/golem/output/crop_image.jpeg)`;
+        tasks.push(
+          executor.run(async (ctx) => {
+            await ctx.run(`convert ${inputImage} -crop 100x120+50+50 /golem/output/crop_image.jpeg`);
+            await ctx.dowloadData(`/golem/output/crop_image.jpeg`, 'crop_image.jpeg');
+            document.querySelector('.convert_image3').style.backgroundImage =
+              `url(/golem/output/crop_image.jpeg)`;
+          })
+        );
       }
+
       if (document.getElementById('conversion4').checked) {
-        await executor.run(async (ctx) => {
-          await ctx.run(`convert ${inputImage} -colorspace Gray /golem/output/gray_image.jpeg`);
-          await ctx.dowloadData(`/golem/output/gray_image.jpeg , gray_image.jpeg`);
-        });
-        document.querySelector('.convert_image4').style.backgroundImage = `url(/golem/output/gray_image.jpeg)`;
+        tasks.push(
+          executor.run(async (ctx) => {
+            await ctx.run(`convert ${inputImage} -colorspace Gray /golem/output/gray_image.jpeg`);
+            await ctx.dowloadData(`/golem/output/gray_image.jpeg`, 'gray_image.jpeg');
+            document.querySelector('.convert_image4').style.backgroundImage =
+              `url(/golem/output/gray_image.jpeg)`;
+          })
+        );
       }
+
       if (document.getElementById('conversion5').checked) {
-        await executor.run(async (ctx) => {
-          await ctx.run(`convert ${inputImage} -negate /golem/output/negate_image.jpeg`);
-          await ctx.dowloadData(`/golem/output/negate_image.jpeg , negate_image.jpeg`);
-        });
-        document.querySelector('.convert_image5').style.backgroundImage = `url(/golem/output/negate_image.jpeg)`;
+        tasks.push(
+          executor.run(async (ctx) => {
+            await ctx.run(`convert ${inputImage} -negate /golem/output/negate_image.jpeg`);
+            await ctx.dowloadData(`/golem/output/negate_image.jpeg`, 'negate_image.jpeg');
+            document.querySelector('.convert_image5').style.backgroundImage =
+              `url(/golem/output/negate_image.jpeg)`;
+          })
+        );
       }
+
+      await Promise.all(tasks);
 
       console.log('Results: All done');
       await executor.end();

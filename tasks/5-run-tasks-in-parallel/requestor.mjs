@@ -24,23 +24,42 @@ import * as path from "path";
         name,
       };
     } else {
-      return;
+      return null;
     }
   });
 
-  const results = executor.map(imagesData, async (ctx, image) => {
-    const fileName = path.basename(image.path);
-    console.log(image.path)
-    ctx.uploadFile(image.path, `/golem/work/${fileName}`);
-    const output = await ctx.run(`/realsr-ncnn-vulkan/realsr-ncnn-vulkan -i /golem/work/${fileName} -o /golem/work/upscaled-${fileName} -s 2 -f .jpg`);
-    await ctx.downloadFile(`/golem/work/upscaled-${fileName}`, `${imagesPath}/upscaled-${fileName}`);
-  
-    return output;
-  });
+  for (const image of imagesData) {
+    if (!image) {
+      console.log("Invalid image, skipping.");
+      continue;
+    }
 
-  for await (const result of results) console.log(result);
- 
+    const fileName = path.basename(image.path);
+    console.log(image.path);
+
+    try {
+      await executor.run(async (ctx) => {
+        if (!fs.existsSync(image.path)) {
+          console.error(`File not found: ${image.path}`);
+          return;
+        }
+
+        ctx.uploadFile(image.path, `/golem/work/${fileName}`);
+        const output = await ctx.run(`realesrgan-ncnn-vulkan -i /golem/work/${fileName} -o /golem/work/upscaled-${fileName} -n realesr-animevideov3-x2 -s 2 -f .jpg`);
+
+        if (output.stderr && output.stderr.includes("decode image")) {
+          console.error(`Error decoding image: ${output.stderr}`);
+          // Додати обробку помилки тут, якщо потрібно
+        } else if (output.isBatchFinished) {
+          await ctx.downloadFile(`/golem/work/upscaled-${fileName}`, `${imagesPath}/upscaled/upscaled-${fileName}`);
+          console.log(output);
+        }
+      });
+    } catch (err) {
+      console.error(`Task execution error: ${err}`);
+      // Додати обробку помилки тут, якщо потрібно
+    }
+  }
+
   await executor.end();
 })();
-
-
