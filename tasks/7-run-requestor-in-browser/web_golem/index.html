@@ -78,10 +78,12 @@
 
     #processed-images {
       height: 400px;
-      width: 400px;
+      width: 500px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      ;
+    }
+    #processed-images img{
+
     }
   </style>
 </head>
@@ -121,7 +123,7 @@
     <img id="uploaded-image" class="image original_image">
     <div id="processed-images"></div>
   </div>
- 
+
 
 
   <script type="module">
@@ -157,12 +159,27 @@
       );
       processedImages.appendChild(imageElement);
     }
-   
+
+    function appendLog(msg) {
+      const logs_el = document.getElementById("logs");
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(msg));
+      logs_el.appendChild(li);
+    }
+    const logger = {
+      log: (msg) => appendLog(`[${new Date().toISOString()}] ${msg}`),
+      warn: (msg) => appendLog(`[${new Date().toISOString()}] [warn] ${msg}`),
+      debug: (msg) => null,
+      error: (msg) => appendLog(`[${new Date().toISOString()}] [error] ${msg}`),
+      info: (msg) => appendLog(`[${new Date().toISOString()}] [info] ${msg}`),
+      table: (msg) => appendLog(JSON.stringify(msg, null, "\t")),
+    };
+
     function setImage() {
-        const imageInput = document.getElementById("image");
-        const uploadedImage = document.getElementById("uploaded-image");
-        uploadedImage.src = URL.createObjectURL(imageInput.files[0]);
-      }
+      const imageInput = document.getElementById("image");
+      const uploadedImage = document.getElementById("uploaded-image");
+      uploadedImage.src = URL.createObjectURL(imageInput.files[0]);
+    }
 
     async function run() {
       const imageInput = document.getElementById("image");
@@ -170,20 +187,19 @@
       const extension = imageInput.files[0].name.split(".").pop();
       const inputImage = `/golem/input/input.${extension}`;
 
-     
-
       const executor = await TaskExecutor.create({
         package: "7faa6a327c0a568fb3ad18ed1adf91a7493a445fc0dc640ab3d2eab0",
         yagnaOptions: {
-          apiKey: "7eb7bce657144200b75f562c82088b74"
+          apiKey: "7eb7bce657144200b75f562c82088b74",
+          logger
         },
       });
 
-      executor.beforeEach(async (ctx) => {
+      await executor.beforeEach(async (ctx) => {
         await ctx.uploadData(file, inputImage);
       });
 
-      let conversions = [{
+      conversions = [{
           name: "rotate",
           checkbox: document.getElementById("conversion1").checked,
           command: `convert ${inputImage} -rotate 60 /golem/output/rotate_image.${extension}`,
