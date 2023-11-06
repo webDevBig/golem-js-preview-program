@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
@@ -19,10 +19,6 @@
       flex-direction: column;
       justify-content: flex-end;
       align-items: flex-start;
-    }
-
-    select {
-      width: 200px;
     }
 
     button {
@@ -82,47 +78,44 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }
-    #processed-images img{
-
-    }
   </style>
 </head>
 
 <body>
-
   <div class="functionality">
     <div class="clm">
-      <p>Upload your image</p>
-      <input type="file" name="image" accept="image/*" id="image" required>
+      <input type="file" id="image" accept="image/*">
     </div>
     <div class="clm">
       <p>Choose type of conversion:</p>
       <div class="conversions-box">
-        <div class="row"><input type="checkbox" name="conversions" id="conversion1" value="rotate">
-          <label for="conversion1">Rotate</label>
-        </div>
-        <div class="row"> <input type="checkbox" name="conversions" id="conversion2" value=".png">
-          <label for="conversion2">.png</label>
-        </div>
-        <div class="row"><input type="checkbox" name="conversions" id="conversion3" value="crop">
-          <label for="conversion3">Crop</label>
-        </div>
-        <div class="row"><input type="checkbox" name="conversions" id="conversion4" value="gray">
-          <label for="conversion4">Gray</label>
-        </div>
-        <div class="row"><input type="checkbox" name="conversions" id="conversion5" value="negate">
-          <label for="conversion5">Negate</label>
-        </div>
+        <div class="row"><input type="checkbox" id="conversion1">Rotate</div>
+        <div class="row"><input type="checkbox" id="conversion2">.png</div>
+        <div class="row"><input type="checkbox" id="conversion3">Crop</div>
+        <div class="row"><input type="checkbox" id="conversion4">Gray</div>
+        <div class="row"><input type="checkbox" id="conversion5">Negate</div>
       </div>
     </div>
     <div class="clm">
-      <button id="submit">OK</button>
+      <button id="submit">Start</button>
     </div>
   </div>
   <div class="result">
-    <img id="uploaded-image" class="image original_image">
-    <div id="processed-images"></div>
+    <div id="image-display-section" style="display: none;">
+      <img id="uploaded-image" alt="Uploaded Image">
+    </div>
+    <div id="processed-images-section">
+      <div id="processed-images"></div>
+    </div>
   </div>
+
+  <div class="clm">
+    <h2>Logs:</h2>
+    <ul id="logs"></ul>
+  </div>
+
+
+
 
 
 
@@ -132,7 +125,15 @@
     } from "https://unpkg.com/@golem-sdk/golem-js";
 
     let results = [];
-    let conversions = [];
+
+    function setImage() {
+      const imageInput = document.getElementById("image");
+      const uploadedImage = document.getElementById("uploaded-image");
+      const imageDisplaySection = document.getElementById("image-display-section");
+      imageDisplaySection.style.display="block"
+
+      uploadedImage.src = URL.createObjectURL(imageInput.files[0]);
+    }
 
     function readFile(file) {
       return new Promise((resolve, reject) => {
@@ -148,8 +149,12 @@
         };
       });
     }
-
+   
     function appendImage(image) {
+      const processedImagesSection = document.getElementById(
+        "processed-images-section"
+      );
+      processedImagesSection.hidden = false;
       const processedImages = document.getElementById("processed-images");
       const imageElement = document.createElement("img");
       imageElement.src = URL.createObjectURL(
@@ -166,6 +171,7 @@
       li.appendChild(document.createTextNode(msg));
       logs_el.appendChild(li);
     }
+
     const logger = {
       log: (msg) => appendLog(`[${new Date().toISOString()}] ${msg}`),
       warn: (msg) => appendLog(`[${new Date().toISOString()}] [warn] ${msg}`),
@@ -175,60 +181,55 @@
       table: (msg) => appendLog(JSON.stringify(msg, null, "\t")),
     };
 
-    function setImage() {
-      const imageInput = document.getElementById("image");
-      const uploadedImage = document.getElementById("uploaded-image");
-      uploadedImage.src = URL.createObjectURL(imageInput.files[0]);
-    }
-
     async function run() {
       const imageInput = document.getElementById("image");
-      const file = await readFile(imageInput.files[0]);
+      const fileData = await readFile(imageInput.files[0]);
       const extension = imageInput.files[0].name.split(".").pop();
       const inputImage = `/golem/input/input.${extension}`;
 
       const executor = await TaskExecutor.create({
         package: "7faa6a327c0a568fb3ad18ed1adf91a7493a445fc0dc640ab3d2eab0",
         yagnaOptions: {
-          apiKey: "7eb7bce657144200b75f562c82088b74",
-          logger
+          apiKey: "7eb7bce657144200b75f562c82088b74"
         },
+        maxParallelTasks: 5,
+        logger,
       });
 
-      await executor.beforeEach(async (ctx) => {
-        await ctx.uploadData(file, inputImage);
+      executor.beforeEach(async (ctx) => {
+        await ctx.uploadData(fileData, inputImage);
       });
 
-      conversions = [{
+      let filters = [{
           name: "rotate",
-          checkbox: document.getElementById("conversion1").checked,
+          enabled: document.getElementById("conversion1").checked,
           command: `convert ${inputImage} -rotate 60 /golem/output/rotate_image.${extension}`,
         },
         {
           name: "convert",
-          checkbox: document.getElementById("conversion2").checked,
+          enabled: document.getElementById("conversion2").checked,
           command: `convert ${inputImage} /golem/output/convert_image.png`,
         },
         {
           name: "crop",
-          checkbox: document.getElementById("conversion3").checked,
+          enabled: document.getElementById("conversion3").checked,
           command: `convert ${inputImage}  -crop 100x120+50+50  /golem/output/crop_image.${extension}`,
         },
         {
           name: "colorspace",
-          checkbox: document.getElementById("conversion4").checked,
+          enabled: document.getElementById("conversion4").checked,
           command: `convert ${inputImage} -colorspace Gray  /golem/output/colorspace_image.${extension}`,
         },
         {
           name: "negate",
-          checkbox: document.getElementById("conversion5").checked,
+          enabled: document.getElementById("conversion5").checked,
           command: `convert ${inputImage} -negate  /golem/output/negate_image.${extension}`,
         },
       ];
 
-      const activeConversions = conversions.filter((f) => f.checkbox);
-
-      await executor.forEach(activeConversions, async (ctx, filter) => {
+      const activeFilters = filters.filter((f) => f.enabled);
+      
+      await executor.forEach(activeFilters, async (ctx, filter) => {
         await ctx.run(filter.command);
 
         results.push(
@@ -245,9 +246,9 @@
     (function init() {
       const imageInput = document.getElementById("image");
       imageInput.addEventListener("change", setImage);
-
-      const submitButton = document.getElementById("submit");
-      submitButton.addEventListener("click", async (e) => {
+      
+      const startButton = document.getElementById("submit");
+      startButton.addEventListener("click", async (e) => {
         e.preventDefault();
         await run();
         results.forEach((result) => {
@@ -256,6 +257,7 @@
       });
     })();
   </script>
+
 </body>
 
 </html>
