@@ -82,6 +82,7 @@
 </head>
 
 <body>
+  
   <div class="functionality">
     <div class="clm">
       <input type="file" id="image" accept="image/*">
@@ -89,8 +90,8 @@
     <div class="clm">
       <p>Choose type of conversion:</p>
       <div class="conversions-box">
-        <div class="row"><input type="checkbox" id="conversion1">Rotate</div>
-        <div class="row"><input type="checkbox" id="conversion2">.png</div>
+        <div class="row"><input type="checkbox" id="conversion1">Rotate 60</div>
+        <div class="row"><input type="checkbox" id="conversion2">Rotate 180</div>
         <div class="row"><input type="checkbox" id="conversion3">Crop</div>
         <div class="row"><input type="checkbox" id="conversion4">Gray</div>
         <div class="row"><input type="checkbox" id="conversion5">Negate</div>
@@ -120,9 +121,7 @@
 
 
   <script type="module">
-    import {
-      TaskExecutor
-    } from "https://unpkg.com/@golem-sdk/golem-js";
+    import { TaskExecutor } from "https://unpkg.com/@golem-sdk/golem-js";
 
     let results = [];
 
@@ -187,13 +186,15 @@
       const extension = imageInput.files[0].name.split(".").pop();
       const inputImage = `/golem/input/input.${extension}`;
 
+      if (!imageInput.files.length) {
+          alert("Please select an image file");
+          return;
+        }
+
       const executor = await TaskExecutor.create({
         package: "7faa6a327c0a568fb3ad18ed1adf91a7493a445fc0dc640ab3d2eab0",
-        yagnaOptions: {
-          apiKey: "7eb7bce657144200b75f562c82088b74"
-        },
-        maxParallelTasks: 5,
-        logger,
+          yagnaOptions: { apiKey: "7eb7bce657144200b75f562c82088b74" },
+          logger,
       });
 
       executor.beforeEach(async (ctx) => {
@@ -206,9 +207,9 @@
           command: `convert ${inputImage} -rotate 60 /golem/output/rotate_image.${extension}`,
         },
         {
-          name: "convert",
+          name: "rotate-180",
           enabled: document.getElementById("conversion2").checked,
-          command: `convert ${inputImage} /golem/output/convert_image.png`,
+          command: `convert ${inputImage} -rotate 180 /golem/output/rotate_image.${extension}`,
         },
         {
           name: "crop",
