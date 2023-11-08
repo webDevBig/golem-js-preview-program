@@ -29,11 +29,14 @@ List any additional steps that were necessary to resolve the task (other than th
 
 [
 
-Could you find the necessary information? If not what topics were difficult to find? Yes
+Could you find the necessary information? If not what topics were difficult to find? 
+ Yes, in the documentation I found an example of how run Golem requestor scripts directly in a browser.
 
-How would you change the structure/navigation of the docs? Recommend changes.Do not change.
+How would you change the structure/navigation of the docs? Recommend changes. 
+No changes
 
-Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary? Yes, it was userful.
+Are examples and tutorials useful? What was missing, and what was too detailed or unnecessary? 
+Yes, it was userful.
 
 Have you noticed any errors? Please describe them or provide links to issues if you have already reported them.
 I have server error:
@@ -65,19 +68,23 @@ Nothing
 
 What was your general experience with Golem Network? What was difficult/frustrating? 
 What was a nice surprise? 
+It was interesting to work with something new for me, although there were mistakes and not always everything turned out easily
 
 In what projects could you utilize Golem Network?
-in my future projects.
+In my future projects.
 ]
 
 #### Preview Program
 
 [
 
-Were the tasks and instructions adequate and clear? 
+Were the tasks and instructions adequate and clear?  In general, yes
 
 Is there anything you would improve about the JS Preview program?
-
+Correct mistakes. I often suffered from this
+"Could not start any work on Golem. Processed 2 initial proposals from yagna, filters accepted 0. Check your proposal filters if they are not too restrictive." and a 404 error.
+Although the code works, because it was run and output the results.
+Everything should be error-free for future users.
 ]
 
 
